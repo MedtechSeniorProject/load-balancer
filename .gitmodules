@@ -1,0 +1,6 @@
+[submodule "eventy-be"]
+	path = eventy-be
+	url = https://github.com/MedtechSeniorProject/eventy-be
+[submodule "eventy-fe"]
+	path = eventy-fe
+	url = https://github.com/MedtechSeniorProject/eventy-fe
