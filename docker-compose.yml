@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+  backend-server-1:
+    build: ./eventy-be/    
+    environment:
+      - DATABASE_URL=postgres://postgres:seniorproject2024@database:5432/eventy
+    depends_on:
+      - database
+    networks:
+      - eventy-network
+  backend-server-2:
+    build: ./eventy-be/
+    environment:
+      - DATABASE_URL=postgres://postgres:seniorproject2024@database:5432/eventy
+    depends_on:
+      - database
+    networks:
+      - eventy-network
+  backend-server-3:
+    build: ./eventy-be/
+    environment:
+      - DATABASE_URL=postgres://postgres:seniorproject2024@database:5432/eventy
+    depends_on:
+      - database
+    networks:
+      - eventy-network
+
+  load-balancer:
+    build: ./nginx
+    ports:
+      - "3002:80"
+    depends_on:
+      - backend-server-1
+      - backend-server-2
+      - backend-server-3
+    networks:
+      - eventy-network
+
+  frontend:
+    build: ./eventy-fe/
+    ports:
+      - "3000:3000"
+    depends_on:
+      - load-balancer
+    environment:
+      - VITE_BASE_URL="http://localhost:3002/"
+    networks:
+      - eventy-network
+
+  database:
+    image: postgres:16.2
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: seniorproject2024
+      POSTGRES_DB: eventy
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - eventy-network
+
+networks:
+  eventy-network:
+    
+    
+volumes:
+  postgres-data:
+
