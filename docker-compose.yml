@@ -5,6 +5,7 @@ services:
     build: ./eventy-be/    
     environment:
       - DATABASE_URL=postgres://postgres:seniorproject2024@database:5432/eventy
+      - IS_SEEDER=true
     depends_on:
       - database
     networks:
@@ -13,6 +14,7 @@ services:
     build: ./eventy-be/
     environment:
       - DATABASE_URL=postgres://postgres:seniorproject2024@database:5432/eventy
+      - IS_SEEDER=false
     depends_on:
       - database
     networks:
@@ -21,6 +23,7 @@ services:
     build: ./eventy-be/
     environment:
       - DATABASE_URL=postgres://postgres:seniorproject2024@database:5432/eventy
+      - IS_SEEDER=false
     depends_on:
       - database
     networks:
@@ -56,15 +59,9 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: seniorproject2024
       POSTGRES_DB: eventy
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
     networks:
       - eventy-network
 
 networks:
   eventy-network:
     
-    
-volumes:
-  postgres-data:
-
