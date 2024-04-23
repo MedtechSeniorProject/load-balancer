@@ -6,6 +6,12 @@ services:
     environment:
       - DATABASE_URL=postgres://postgres:seniorproject2024@database:5432/eventy
       - IS_SEEDER=true
+      - SUPERADMIN_PASSWORD=superadmin
+      - SUPERADMIN_EMAIL=superadmin@superadmin.com
+      - SUPERADMIN_NAME=superadmin
+      - EVENTMANAGER_PASSWORD=eventmanager
+      - EVENTMANAGER_EMAIL=eventmanager@eventmanager.com
+      - EVENTMANAGER_NAME=eventmanager
     depends_on:
       - database
     networks:
