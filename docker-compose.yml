@@ -5,6 +5,7 @@ services:
     build: ./eventy-be/    
     environment:
       - DATABASE_URL=postgres://postgres:seniorproject2024@database:5432/eventy
+      # - SENTIMENT_API_URL=http://simple-sentiment-analysis/classifyMany
       - IS_SEEDER=true
       - SUPERADMIN_PASSWORD=superadmin
       - SUPERADMIN_EMAIL=superadmin@superadmin.com
@@ -13,6 +14,7 @@ services:
       - EVENTMANAGER_EMAIL=eventmanager@eventmanager.com
       - EVENTMANAGER_NAME=eventmanager
     depends_on:
+      # - simple-sentiment-analysis
       - database
     networks:
       - eventy-network
@@ -20,8 +22,10 @@ services:
     build: ./eventy-be/
     environment:
       - DATABASE_URL=postgres://postgres:seniorproject2024@database:5432/eventy
+      # - SENTIMENT_API_URL=http://simple-sentiment-analysis/classifyMany
       - IS_SEEDER=false
     depends_on:
+      # - simple-sentiment-analysis
       - database
     networks:
       - eventy-network
@@ -29,8 +33,10 @@ services:
     build: ./eventy-be/
     environment:
       - DATABASE_URL=postgres://postgres:seniorproject2024@database:5432/eventy
+      # - SENTIMENT_API_URL=http://simple-sentiment-analysis:5000/classifyMany
       - IS_SEEDER=false
     depends_on:
+      # - simple-sentiment-analysis
       - database
     networks:
       - eventy-network
@@ -45,6 +51,11 @@ services:
       - backend-server-3
     networks:
       - eventy-network
+
+  # simple-sentiment-analysis:
+    # build: ./simple-sentiment-analysis
+    # networks:
+    #   - eventy-network
 
   frontend:
     build: ./eventy-fe/

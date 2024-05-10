@@ -6,3 +6,7 @@
 	path = eventy-fe
 	url = https://github.com/MedtechSeniorProject/eventy-fe/
 	branch = dockerized
+[submodule "simple-sentiment-analysis"]
+	path = simple-sentiment-analysis
+	url = https://github.com/Spid3rrr/simple-sentiment-analysis
+	branch = main
